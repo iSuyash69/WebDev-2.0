@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images\favicon-32x32.png">
+    <title>Four Card</title>
+    <style>
+        *{
+           padding: 0;
+           margin: 0; 
+           font-family: 'Poppins', sans-serif;
+        }
+        body{
+            background-color: hsl(0, 0%, 98%);
+            min-height: 100vh;
+            width: 100%;
+        }
+        .header{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding-top: 60px ;
+            justify-content: center;
+            align-items: center;
+            /* background-color: aqua; */
+        }
+        .title{
+            font-size: 34px;
+            font-weight: 200;
+            color: gray;
+            line-height:1.5;
+        }
+        .title span{
+            font-weight: 600;
+            color: hsl(234, 12%, 34%);
+        }
+        .description{
+            color: hsl(229, 6%, 66%);
+            font-weight: 300;
+            padding-top: 15px;
+            max-width: 570px;
+            font-size: 17px;
+            /* background-color: blue; */
+            text-align: center;
+        }
+        .main-container{
+            width: 100%;
+            padding: 60px 0;
+            display: flex;
+            gap: 30px;
+            /* background-color: aqua; */
+            justify-content: center;
+            align-items: center;
+        }
+        .sub-container2{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .card{
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: en;
+            padding: 25px 30px;
+            border-top:solid 4px;
+            border-radius: 5px;
+            width: 310px;
+            height: 210px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+        }
+        .card-title{
+            color: hsl(234, 12%, 34%);
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .card-desc{
+            padding-top: 15px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: hsl(229, 6%, 66%);
+        }
+        .card-img{
+            align-self: flex-end;
+            justify-self: end;
+            padding-top: 45px;
+        }
+        .card1{
+            border-top-color: hsl(180, 62%, 55%);
+        }
+        .card2{
+            border-top-color: hsl(0, 78%, 62%);
+        }
+        .card3{
+            border-top-color: hsl(34, 97%, 64%);
+        }
+        .card4{
+            border-top-color: hsl(212, 86%, 64%);
+        }
+        @media (max-width:468px){
+            .main-container{
+                flex-wrap: wrap;
+            }
+            .title{
+                font-size: 25px;
+            }
+            .description{
+                font-size: 15px;
+                max-width: 300px;
+            }
+            .card{
+                width: 270px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">Reliable, efficient delivery <br><span>Powered by Technology</span></h1>
+        <h3 class="description">Our Artificial Intelligence powered tools use millions of project data points to ensure that your project is successful</h3>
+    </div>  
+    <div class="main-container">
+        <div class="sub-container1">
+            <div class="card card1">
+                <h3 class="card-title">Team Builder</h3>
+                <p class="card-desc">Scans our talent network to create the optimal team for your project</p>
+                <img src="/images/icon-supervisor.svg" alt="img" class="card-img">
+            </div>     
+        </div>
+        <div class="sub-container2">
+            <div class="card card2">
+                <h3 class="card-title">Supervisor</h3>
+                <p class="card-desc">Scans our talent network to create the optimal team for your project</p>
+                <img src="/images/icon-team-builder.svg" alt="img" class="card-img">
+            </div>
+            <div class="card card3">
+                <h3 class="card-title">Karma</h3>
+                <p class="card-desc">Scans our talent network to create the optimal team for your project</p>
+                <img src="/images/icon-karma.svg" alt="img" class="card-img">
+            </div>
+        </div>
+        <div class="sub-container3">
+            <div class="card card4">
+                <h3 class="card-title">Calculator</h3>
+                <p class="card-desc">Scans our talent network to create the optimal team for your project</p>
+                <img src="/images/icon-calculator.svg" alt="img" class="card-img">
+            </div>  
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            padding: 50px 100px;
+            /* width: 100%; */
+            /* min-height: 100vh; */
+            background-color: #A9C9FF;
+            background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
+
+        }
+        .header{
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .logo{
+            width: 70px;
+        }
+        .title{
+            font-weight: 700;
+            color: white;
+        }
+        .btn{
+            display: flex;
+            align-items: center;
+            background-color: 835BE7;
+            width: fit-content;
+            padding: 15 20;
+            cursor: pointer;
+            gap: 10px;
+            border-radius: 999px;
+            margin-top: 25px;
+            user-select: none;
+        }
+        .btn img{
+            width: 25px;
+        }
+        .btn p{
+            font-size: 16px;
+            font-weight: 400;
+            color: white;
+        }
+        .notes-container{
+            display: flex;
+            height: calc(100vh - 290px);
+            /* background-color: antiquewhite; */
+            margin-top:20px;
+            padding: 10px 10px;
+            gap: 15px;
+            justify-content:start;
+            align-content: flex-start;
+            flex-direction: column;
+            flex-wrap: wrap;
+
+        }
+        .note{
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            border: solid lightgray 2px;
+            background-color: white;
+            width: fit-content;
+            height: fit-content;
+        }
+        .textarea{
+            width: 400px;
+            height: 170px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            padding:20px 20px;
+            resize:none;
+        }
+        .edit{
+            bottom: 10;
+            right: 50;
+            width: 20px;
+            background-color: gray;
+            position: absolute;
+            cursor: pointer;
+        }
+        .delete{
+            bottom: 10;
+            right: 15;
+            position: absolute;
+            cursor: pointer;
+            width: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/images/notes.png" alt="" class="logo">
+        <h2 class="title">Notes</h2>
+    </div>
+    <div class="btn">
+        <img src="/images//edit.png" alt="">
+        <p>Create Notes</p>
+    </div>
+    <div class="notes-container">
+        <!-- <div class="note">
+            <textarea class="textarea"></textarea>
+            <img class="delete" src="/images/delete.png" alt="">
+            <img class="edit" src="/images//edit.png">
+        </div> -->
+    </div>
+
+    <script>
+        const createNoteBtn=document.querySelector(".btn");
+        const notesContainer=document.querySelector(".notes-container");
+
+        createNoteBtn.addEventListener("click",()=>{
+
+            if(notesContainer.lastElementChild==null || notesContainer.lastElementChild.firstElementChild.value!=""){
+                let note=document.createElement("div");
+                let textarea=document.createElement("textarea");
+                let deleteBtn=document.createElement("img");
+                let editBtn=document.createElement("img");
+                note.className="note";
+                textarea.className="textarea";
+                deleteBtn.src="/images/delete.png";
+                deleteBtn.className="delete";
+                editBtn.src="/images/edit.png";
+                editBtn.className="edit";
+                notesContainer.appendChild(note);
+                note.appendChild(textarea);
+                note.appendChild(deleteBtn);
+                note.appendChild(editBtn);
+                textarea.focus();
+            }
+            else if(notesContainer.lastElementChild!=null && notesContainer.lastElementChild.firstElementChild.value==""){
+                alert("Last note is empty");
+                notesContainer.lastElementChild.firstElementChild.focus();
+            }
+
+        });
+
+        notesContainer.addEventListener("click",(e)=>{
+
+            if(e.target.className=="delete"){
+                e.target.parentElement.remove();
+            }
+
+            if(e.target.className=="edit"){
+                console.log(e.target.previousSibling.previousSibling.style.resize="both");
+            }
+             
+        });   
+        
+    </script>
+</body>
+</html>

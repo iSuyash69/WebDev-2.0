@@ -1,0 +1,299 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/system/resources/previews/021/059/827/original/chatgpt-logo-chat-gpt-icon-on-white-background-free-vector.jpg">
+    <title>Document</title><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+        }
+        .req-res-section::-webkit-scrollbar{
+            width: 10px;
+            background-color: transparent;
+        }
+        .req-res-section::-webkit-scrollbar-thumb{
+            background-color: gray;
+        }
+        body{
+            min-height: 100vh;
+            width: 100%;
+            background-color: #212121;
+        }
+        .main-container{
+            position:relative;
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: start;
+            /* background-color: antiquewhite; */
+        }
+        .welcome-section{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            user-select: none;
+            /* background-color: aqua; */
+        }
+        .welcome-section img{
+            width: 45px;
+            border-radius: 999px;
+        }
+        .welcome-section h2{
+            color: white;
+            font-weight: 500;
+            font-size: 20px;
+        }
+        .searchbar-section{
+            position: absolute;
+            /* background-color: antiquewhite; */
+            bottom: 35;
+            left: 50%;
+            display: flex;
+            border: solid 2px #424242;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 14px;
+            transform: translateX(-50%);
+        }
+        .searchbar-section input{
+            width:570px;
+            height: 45px;
+            border: none;
+            /* outline: blanchedalmond solid 3px; */
+            background-color: transparent;
+            padding-left: 15px;
+            padding-right: 50px;
+            font-size: 14px;
+            color: white;
+        }
+        .searchbar-section input::placeholder{
+            font-size: 14px;
+            font-weight: 500;
+            color: #909090;
+        }
+        .searchbar-section i{
+            position: absolute;
+            user-select: none;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor:default;
+            right: 10;
+            background-color: #383838;
+            padding: 5px 7px;
+            border-radius: 7px;
+        }
+        .req-res-section{
+            /* background-color: antiquewhite; */
+            display: flex;
+            width: 100%;
+            height: 80vh;
+            margin-top:5vh;
+            overflow-y: auto;
+            flex-direction: column;
+        }
+        .req-res-model{
+            /* background-color: aliceblue; */
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: fit-content;
+            /* gap: 20px; */
+        }
+        .req{
+            display: flex;
+            padding: 20px 100px;
+            gap: 15px;
+            /* background-color: #2C2D36; */
+        }
+        .req-img{
+            width: 40px;
+            border-radius: 5px;
+        }
+        .req-p{
+            padding-top: 7px;
+            color: white;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .res{
+            display: flex;
+            gap: 15px;
+            padding: 20px 100px;
+            background-color: #2C2D31;
+            align-items: start;
+        }
+        .res-img{
+            width: 40px;
+            border-radius: 5px;
+        }
+        .res-p{
+            padding-top: 7px;
+            color: white;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        @media (max-width:468px){
+            .searchbar-section input{
+                width:90vw;
+            }
+            .welcome-section img{
+                width: 50px;
+            }
+            .welcome-section h2{
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="welcome-section">
+            <img src="https://static.vecteezy.com/system/resources/previews/021/059/827/original/chatgpt-logo-chat-gpt-icon-on-white-background-free-vector.jpg" alt="gpt">
+            <h2>How can I help you today?</h2>
+        </div>
+        <div class="req-res-section">
+        </div>
+        <div class="searchbar-section">
+            <input placeholder="Message ChatGPT..." type="text">
+            <i class="fa-solid fa-arrow-up"></i>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        const searchQuery=document.querySelector(".searchbar-section input");
+        const searchBtn=document.querySelector(".searchbar-section i");
+        const reqResSection=document.querySelector(".req-res-section");
+        let reqResContainer=[];
+
+        const checkSearchQuery=()=>{
+
+            if(searchQuery.value!=""){
+                searchBtn.style.cursor="pointer";
+                searchBtn.style.backgroundColor="white";
+            }
+            else{
+                searchBtn.style.cursor="default";
+                searchBtn.style.backgroundColor="#383838";    
+            }
+
+        };
+
+        const displayResults = () => {
+
+            reqResSection.innerHTML="";
+            reqResContainer.map((item,index) => {
+                const reqResModel = document.createElement("div");
+                reqResModel.className = "req-res-model";
+
+                const req = document.createElement("div");
+                req.className = "req";
+
+                const userImg = document.createElement("img");
+                userImg.className = "req-img";
+                userImg.src="/images/user.jpg";
+
+                const reqText = document.createElement("p");
+                reqText.className = "req-p"; 
+                reqText.innerHTML=`${item.request}`
+
+                const res = document.createElement("div");
+                res.className = "res";
+
+                const gptImg = document.createElement("img");
+                gptImg.className = "res-img"; 
+                gptImg.src="/images/chatbot.jpg";
+
+                const resText = document.createElement("p");
+                resText.className = "res-p";
+                resText.innerHTML=`${item.response}`;
+
+                reqResSection.appendChild(reqResModel);
+                reqResModel.appendChild(req);
+                reqResModel.appendChild(res);
+                req.appendChild(userImg);
+                req.appendChild(reqText);
+                res.appendChild(gptImg);
+                res.appendChild(resText);
+
+            });
+
+            console.log(reqResSection);
+        };
+
+        const responseProcessing=(data)=>{
+            console.log(data?.message);
+            reqResContainer.push(
+                {
+                    "request":`${searchQuery.value}`,
+                    "response":`${data?.message}`
+                },
+            );
+            
+            searchQuery.value="";
+            document.querySelector(".welcome-section").style.display="none";
+            searchBtn.style.cursor="default";
+            searchBtn.style.backgroundColor="#383838";    
+            console.log(reqResContainer);
+            displayResults();
+        }
+
+        const fetchData=async()=>{
+
+            try{
+                const query=searchQuery.value;
+
+                const response=await axios.post(`http://localhost:8080/request`,{query});
+
+                if(!response){
+                    return console.log("Something went wrong");
+                }
+
+                console.log(response?.data);
+                responseProcessing(response?.data);
+
+            }
+            catch(error){
+                console.log("Something went wrong",error);
+                return alert("Something went wrong");
+            }
+
+        }
+
+        const mainFunc=()=>{
+
+            if(searchQuery.value!==""){
+                fetchData();
+            }
+        }
+
+        searchBtn.addEventListener("click",()=>{
+            mainFunc();
+        });
+
+        document.addEventListener("keydown",(event)=>{
+            if(event.key=="Enter"){
+                mainFunc();
+            }
+        });
+
+        document.addEventListener("input",(event)=>{
+            checkSearchQuery();
+        });
+
+    </script>
+</body>
+</html>
